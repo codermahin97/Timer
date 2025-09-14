@@ -1,0 +1,25 @@
+{
+  "name": "countdown-timer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codermahin97/countdown-timer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codermahin97/countdown-timer/issues"
+  },
+  "homepage": "https://github.com/codermahin97/countdown-timer#readme",
+  "devDependencies": {
+    "electron": "^38.1.0",
+    "electron-packager": "^17.1.2"
+  }
+}

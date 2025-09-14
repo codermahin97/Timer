@@ -1,0 +1,234 @@
+*{
+    box-sizing: border-box;
+    transition: 0.3s all;
+}
+body{
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    justify-items: center;
+    background-color: hsl(0, 0%, 10%);
+}
+.container{
+    margin-top: 50px;
+    justify-content: center;
+    justify-items: center;
+    width: 400px;
+    height: 500px;
+    background-color: hsl(0, 0%, 20%);
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5),
+                -5px 5px 10px rgba(0,0,0,0.5);
+}
+.timer-box{
+    justify-items: center;
+    margin: 20px 12px;
+    /* pointer-events: none; */
+}
+.timer{
+    color: hsl(120, 100%, 45%);
+    padding-top: 90px;
+    padding-left: 15px;
+    margin-bottom: 35px;
+    font-size: 48px;
+    width: 250px;
+    height: 250px;
+    font-family: monospace;
+    border: 3px solid white;
+    border-radius: 50%;
+
+}
+/* button{
+    font-size: 25px;
+    border-radius: 10px;
+    border: none;
+    background-color: hsl(0, 0%, 30%);
+    color: hsl(0, 0%, 100%);
+    padding: 10px 15px;
+    margin: 0 10px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.4),
+               -2px -2px 5px rgba(255,255,255,0.05);
+}
+button:hover{
+    background-color: hsl(0, 0%, 30%);
+    /* border: 2px solid rgba(255,255,255,0.5); */
+    /* scale: 0.95;
+}
+button:active{
+    color: greenyellow;
+} */ 
+button:not(#theme-toggle) {
+    font-size: 25px;
+    border-radius: 10px;
+    border: none;
+    background-color: hsl(0, 0%, 30%);
+    color: hsl(0, 0%, 100%);
+    padding: 10px 15px;
+    margin: 0 10px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.4),
+               -2px -2px 5px rgba(255,255,255,0.05);
+    cursor: pointer;
+}
+
+button:not(#theme-toggle):hover {
+    background-color: hsl(0, 0%, 30%);
+    scale: 0.95;
+}
+
+button:not(#theme-toggle):active {
+    color: greenyellow;
+}
+
+input[type="number"] {
+    width: 80px;
+    padding: 10px;
+    margin: 15px 10px;
+    font-size: 20px;
+    font-family: monospace;
+    text-align: center;
+    color: hsl(120, 100%, 45%);
+    background-color: hsl(0, 0%, 25%);
+    border: none;
+    border-radius: 10px;
+    box-shadow: inset 2px 2px 5px rgba(0,0,0,0.4),
+                inset -2px 2px 5px rgba(255,255,255,0.05);
+    outline: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+input[type="number"]:focus {
+    background-color: hsl(0, 0%, 30%);
+    border: 2px solid rgba(255,255,255,0.5);
+    transform: scale(1.05);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0; /* Hide default arrows */
+}
+.time-inputs .colon {
+    font-size: 22px;
+    color: hsl(120, 100%, 45%);
+    /* margin: 0 5px; */
+    font-family: monospace;
+}
+.pop-up{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+}
+.popup-content{
+    background-color: rgba(255,255,255,0.5);
+    padding: 10px 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+}
+.popup-content h3{
+    margin: 0 0 10px;
+}
+.popup-content button{
+    margin-top: 15px;
+    padding: 8px 16px;
+    border: none;
+    background-color: hsl(0, 0%, 20%);
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.popup-content button:hover {
+  background: hsl(0, 0%, 30%);
+}
+
+/* Light theme */
+body.light-mode {
+    background-color: hsl(0, 0%, 98%);
+    color: hsl(0, 0%, 10%);
+}
+
+body.light-mode .container {
+    background-color: hsl(0, 0%, 90%);
+}
+
+body.light-mode .timer {
+    border-color: hsl(0, 0%, 10%);
+    color: hsl(120, 100%, 45%);
+}
+
+body.light-mode input[type="number"] {
+    background-color: hsl(0, 0%, 95%);
+    color: hsl(120, 100%, 45%);
+}
+
+body.light-mode #theme-toggle {
+    background-color: hsl(0, 0%, 80%);
+    color: hsl(0, 0%, 10%);
+    border-radius: 50%;
+    margin-top: 5px;
+    padding: 10px 10px 10px 10px;
+}
+
+body.light-mode button:hover {
+    background-color: hsl(0, 0%, 75%);
+}
+
+body.light-mode .popup-content {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: hsl(0, 0%, 10%);
+}
+/* Dark mode (default) */
+/* .toggle-btn {
+    background-color: hsl(0, 0%, 30%);
+    color: hsl(0, 0%, 100%);
+    border-radius: 50%;
+    padding: 10px;
+    margin-top: 5px;
+} */
+
+/* Hover effect specific to toggle */
+/* .toggle-btn:hover {
+    background-color: hsl(0, 0%, 25%);
+} */
+
+/* Light mode */
+/* body.light-mode .toggle-btn {
+    background-color: hsl(0, 0%, 80%);
+    color: hsl(0, 0%, 10%);
+}
+
+body.light-mode .toggle-btn:hover {
+    background-color: hsl(0, 0%, 75%);
+} */
+#theme-toggle {
+    border-radius: 50%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-left: 88%;
+    border: none;
+    background-color: hsl(0, 0%, 30%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.4),
+               -2px -2px 5px rgba(255,255,255,0.05);
+    cursor: pointer;
+}
+
+#theme-toggle:hover {
+    background-color: hsl(0, 0%, 25%);
+}
+
+/* Light mode for toggle */
+body.light-mode #theme-toggle {
+    background-color: hsl(0, 0%, 80%);
+    color: hsl(0, 0%, 10%);
+}
+
+body.light-mode #theme-toggle:hover {
+    background-color: hsl(0, 0%, 75%);
+}
