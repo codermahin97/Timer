@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#101010">
+</head>
+<body>
+
+    <div class="container">
+        <button id="theme-toggle" class="toggle-btn">🌙</button>
+
+        <div class="pop-up" id="pop-up">
+        <div class="popup-content">
+            <h3>Time's up!</h3>
+            <p>Your countdown time has finished</p>
+            <button id="close-popup">OK</button>
+        </div>
+    </div>
+        <audio src="fire_alarm.mp3" id="notifySound" preload="auto"></audio>
+        <div class="time-inputs">
+            <input type="number" class="hours" max="23" placeholder="H">
+            <span class="colon">:</span>
+            <input type="number" class="minutes" max="59" placeholder="M">
+            <span class="colon">:</span>
+            <input type="number" class="seconds" max="59" placeholder="S">
+        </div>
+
+        <div class="timer-box">
+            <div class="timer">00:00:00</div>
+            <button class="start-btn">start</button>
+            <button class="stop-btn">pause</button>
+            <button class="reset-btn">reset</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
