@@ -1,16 +1,20 @@
-// notification precess
+// notification process
 if ('Notification' in window) {
     Notification.requestPermission().then(permission => {
         console.log('Notification permission:', permission)
     })
 }
 
+// if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.register('service.js')
+//     .then(()=> console.log('Service Worker registered'))
+//     .then(err => console.log('SW registration failed:', err))
+// }
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service.js')
-    .then(()=> console.log('Service Worker registered'))
-    .then(err => console.log('SW registration failed:', err))
+  navigator.serviceWorker.register('/service.js')
+    .then(reg => console.log('Merged SW registered', reg))
+    .catch(err => console.log('SW registration failed', err));
 }
-
 
 const timer = document.querySelector('.timer')
 const startButton = document.querySelector('.start-btn')
@@ -28,13 +32,39 @@ let interval = null
 let initHours = 0
 let initMinutes = 0
 let initSeconds = 0
-
+let audio = new Audio('fire_alarm.mp3')
+audio.loop = true
+// const notify = document.getElementById('notifySound')
+      // Start infinite loop
+      function startNotify() {
+      audio.currentTime = 0
+      audio.play()
+      }
+      // Stop when user wants
+      function stopNotify() {
+      audio.pause()
+      audio.currentTime = 0
+      }
 function startCountDown(){
     if (!interval) {
+        if (    
+           (hoursInput.value === '' || parseInt(hoursInput.value) === 0) &&
+           (minutesInput.value === '' || parseInt(minutesInput.value) === 0) &&
+           (secondsInput.value === '' || parseInt(secondsInput.value) === 0)
+        ) {
+            alert("Please set your time before starting");
+            return;
+        }
+        // ✅ Always reinitialize from inputs when no active countdown
+
         if (hours === undefined && minutes === undefined && seconds === undefined) {
-            initHours = parseInt(hoursInput.value) || 0
-            initMinutes = parseInt(minutesInput.value) || 0
-            initSeconds = parseInt(secondsInput.value) || 0          
+            let h = parseInt(hoursInput.value) || 0
+            let m = parseInt(minutesInput.value) || 0
+            let s = parseInt(secondsInput.value) || 0     
+            
+            initHours = h
+            initMinutes = m
+            initSeconds = s
             hours = initHours
             minutes = initMinutes
             seconds = initSeconds
@@ -43,10 +73,10 @@ function startCountDown(){
             localStorage.setItem('endTime', endTime)
         }
 
-        if (hours === undefined || minutes === undefined || seconds === undefined) {
-            alert('please set your time before starting')
-            return
-        }
+        // if (hours === undefined || minutes === undefined || seconds === undefined) {
+        //     alert('please set your time before starting')
+        //     return
+        // }
 
         interval = setInterval(()=> {       
             seconds--
@@ -60,19 +90,16 @@ function startCountDown(){
             }
             if (seconds === 0 && minutes === 0 && hours === 0) {
                 clearInterval(interval)
-                // interval = null
+                interval = null
+                hours = undefined
+                minutes = undefined
+                seconds = undefined
                 timer.textContent = '00:00:00'
 
                 document.getElementById('pop-up').style.display = 'flex'
 
-                const notify = document.getElementById('notifySound')
-                notify.currentTime = 0
-                notify.play()
-                
-                setTimeout(() => {
-                    notify.pause()
-                    notify.currentTime = 0
-                },4000)
+                // const notify = document.getElementById('notifySound')
+                startNotify()
 
                 if ('Notification' in window && Notification.permission === 'granted') {
                     new Notification(' Time’s up!', {
@@ -112,21 +139,41 @@ function stopCountDown(){
 function resetCountDown(){
     clearInterval(interval)
     interval = null
-    hours = initHours
-    minutes = initMinutes
-    seconds = initSeconds
+    hours = undefined
+    minutes = undefined
+    seconds = undefined
+
     localStorage.removeItem('endTime')
-    timer.textContent = `${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`
+    // timer.textContent = `${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`
+    timer.textContent = '00:00:00'
+    stopNotify()
 }
 
-startButton.addEventListener('click', startCountDown)
+startButton.addEventListener('click', ()=> {
+    startCountDown()
+    // hoursInput.value = ''
+    // minutesInput.value = ''
+    // secondsInput.value = ''
+    startButton.innerText = 'start'
+})
 stopButton.addEventListener('click', ()=> {
     stopCountDown()
     startButton.innerText = 'resume'
+    // initHours = hours
+    // initMinutes = minutes
+    // initSeconds = seconds
 })
-resetButton.addEventListener('click', resetCountDown)
+
+resetButton.addEventListener('click', ()=> {
+    resetCountDown()
+    startButton.innerText = 'start'
+    hoursInput.value = ''
+    minutesInput.value = ''
+    secondsInput.value = ''
+})
 document.getElementById('close-popup').addEventListener('click', ()=> {
     document.getElementById('pop-up').style.display = 'none'
+    stopNotify()
 })
 
 const toggle = document.getElementById('theme-toggle')

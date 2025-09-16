@@ -38,25 +38,7 @@ body{
     border-radius: 50%;
 
 }
-/* button{
-    font-size: 25px;
-    border-radius: 10px;
-    border: none;
-    background-color: hsl(0, 0%, 30%);
-    color: hsl(0, 0%, 100%);
-    padding: 10px 15px;
-    margin: 0 10px;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.4),
-               -2px -2px 5px rgba(255,255,255,0.05);
-}
-button:hover{
-    background-color: hsl(0, 0%, 30%);
-    /* border: 2px solid rgba(255,255,255,0.5); */
-    /* scale: 0.95;
-}
-button:active{
-    color: greenyellow;
-} */ 
+
 button:not(#theme-toggle) {
     font-size: 25px;
     border-radius: 10px;
@@ -82,7 +64,7 @@ button:not(#theme-toggle):active {
 input[type="number"] {
     width: 80px;
     padding: 10px;
-    margin: 15px 10px;
+    margin: 18px 10px;
     font-size: 20px;
     font-family: monospace;
     text-align: center;
@@ -183,33 +165,10 @@ body.light-mode .popup-content {
     background-color: rgba(255, 255, 255, 0.9);
     color: hsl(0, 0%, 10%);
 }
-/* Dark mode (default) */
-/* .toggle-btn {
-    background-color: hsl(0, 0%, 30%);
-    color: hsl(0, 0%, 100%);
-    border-radius: 50%;
-    padding: 10px;
-    margin-top: 5px;
-} */
-
-/* Hover effect specific to toggle */
-/* .toggle-btn:hover {
-    background-color: hsl(0, 0%, 25%);
-} */
-
-/* Light mode */
-/* body.light-mode .toggle-btn {
-    background-color: hsl(0, 0%, 80%);
-    color: hsl(0, 0%, 10%);
-}
-
-body.light-mode .toggle-btn:hover {
-    background-color: hsl(0, 0%, 75%);
-} */
 #theme-toggle {
     border-radius: 50%;
     padding: 10px;
-    margin-top: 5px;
+    margin-top: 7px;
     margin-left: 88%;
     border: none;
     background-color: hsl(0, 0%, 30%);
@@ -231,4 +190,39 @@ body.light-mode #theme-toggle {
 
 body.light-mode #theme-toggle:hover {
     background-color: hsl(0, 0%, 75%);
+}
+
+
+@media (max-width: 500px) {
+    .container{
+        max-width: 400px;
+        height: 100vh;
+        margin: 0;
+        border: none;
+        border-radius: 0;
+    }
+    .timer-box{
+        justify-items: center;
+        margin: 20px 12px;
+    }
+    .timer{
+        color: hsl(120, 100%, 45%);
+        padding-top: 97px;
+        padding-left: 25px;
+        margin-top: 50px;
+        margin-bottom: 100px;
+        font-size: 40px;
+        width: 250px;
+        height: 250px;
+        font-family: monospace;
+        border: 3px solid white;
+        border-radius: 50%;
+    }
+    button{
+        font-size: 23px;
+    }
+    #theme-toggle{
+        margin-top: 10px;
+        margin-left: 83%;
+    }
 }
